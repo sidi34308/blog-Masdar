@@ -41,9 +41,12 @@ const WritePage = () => {
                     value={value}
                     onChange={setValue}
                     placeholder='اكتب مقالك..'
-                    className='rtl min-h-[200px] text-right'
+                    className='rtl-editor min-h-[200px] text-right'
                 />
             </div>
+            <button className='bg-green-500 text-white py-2 px-4 rounded-md mt-4'>
+                انشر
+            </button>
         </div>
     );
 };

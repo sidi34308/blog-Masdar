@@ -30,6 +30,11 @@ a {
   direction: rtl;
 }
 
+.rtl-editor .ql-editor {
+  direction: rtl;
+  text-align: right;
+}
+
 .container {
   height: auto;
   width: 100%;

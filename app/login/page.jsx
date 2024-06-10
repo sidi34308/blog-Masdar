@@ -1,25 +1,31 @@
-// pages/login.js
-import React from 'react';
+"use client";
+import { signIn, useSession } from "next-auth/react";
+import styles from "./loginPage.module.css";
+import { useRouter } from "next/navigation";
+
+
 
 const LoginPage = () => {
+    const { status } = useSession();
+
+    const router = useRouter();
+
+    if (status === "loading") {
+        return <div className={styles.loading}>Loading...</div>;
+    }
+
+    if (status === "authenticated") {
+        router.push("/")
+    }
+
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <div className="w-full max-w-md bg-white  p-8 rounded-md shadow-lg">
-                <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-                <div className="flex flex-col gap-4">
-                    <button
-
-                        className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-                    >
-                        Sign in with Google
-                    </button>
-                    <button
-
-                        className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-                    >
-                        Sign in with Facebook
-                    </button>
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                <div className={styles.socialButton} onClick={() => signIn("google")}>
+                    Sign in with Google
                 </div>
+                <div className={styles.socialButton}>Sign in with Github</div>
+                <div className={styles.socialButton}>Sign in with Facebook</div>
             </div>
         </div>
     );
